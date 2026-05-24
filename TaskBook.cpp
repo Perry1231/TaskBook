@@ -88,10 +88,6 @@ void AddTask(int *&arrT, const std::string& name_, const std::string& descriptio
         
     }
 
-void pop_back(int *&arr, int &size_) {
-}
-
-
 
     void DisplayTasks() {
         for(int i = 0; i < taskCount; i++) {
@@ -167,9 +163,9 @@ void pop_back(int *&arr, int &size_) {
 
     };
       ~TaskBook() {
+        delete[] arrT;                                                                                       
         std::cout << "TaskBook destructor called." << std::endl;
-    }
-    //delete[] arrT;                                                                                                              // Clean up dynamic array memory
+    }                                                                                                          // Clean up dynamic array memory
 };
 
 
@@ -222,7 +218,7 @@ while(true)
 
     switch(choice) {
         case 1:
-           // task1.AddTask(task1.arrT, "New Task", "Description for new task", 1, 1, size);
+           task1.AddTask("New Task", "Description for new task", 1);
             break;
         case 2:
            // taskBook.RemoveTask();
@@ -250,6 +246,7 @@ while(true)
             return 0;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
+            continue;
     }
 }
     
