@@ -13,9 +13,12 @@ class TaskBook
     std::string name;
     std::string description;
     bool completed;
-    int bsize=0;
-    
-    
+    int bsize=1;                                                                                                              // Size of the dynamic array to store tasks
+
+
+    TaskBook *arrT = new TaskBook[bsize];                                                                                      // Dynamic array to store tasks
+
+
     public:
     static int taskCount;                                                                                                     // Static member to keep track of the number of tasks
 
@@ -39,18 +42,29 @@ class TaskBook
     {
     public:
         std::string name;
-        std::string description;
-        int num;
-        int priority;
+        std::string description;                                                                                            // Task attributes
+        int num;                                                                                                            // Task number to uniquely identify each task           
+        int priority;   
         bool completed;
 
         Task(const std::string& name_, const std::string& description_, int num_, int priority_)                            // Constructor to initialize task attributes
             : name(name_), description(description_), num(num_), priority(priority_), completed(false) {}
-    
 
-void AddTask(const std::string& name_, const std::string& description_, int num_, int priority_) {                          // Function to add a new task
-    taskCount++;
-    num=taskCount;
+
+void AddTask(int *&arrT, const std::string& name_, const std::string& description_, int num_, int priority_, int &bsize) {              // Function to add a new task
+    taskCount++;                                                                                                            // Increment the task count
+    bsize++;
+        int *newArr = new int[bsize];
+        for (int i = 0; i < bsize - 1; i++) {
+            newArr[i] = arrT[i];
+        }
+    
+        newArr[bsize - 1] = TaskBook::taskCount;
+        delete[] arrT;
+        arrT = newArr;
+    
+    
+    num=taskCount;                                                                                                          // Assign the current task count as the task number
         std::cout << "Adding task: " << name_ << std::endl;
         std::cout <<"===============================" << std::endl;
         std::cout << "Description: " << description_ << std::endl;
@@ -61,6 +75,8 @@ void AddTask(const std::string& name_, const std::string& description_, int num_
         std::cout <<"===============================\n\n" << std::endl;
     }
 
+  
+    
 
 
 
@@ -71,6 +87,10 @@ void AddTask(const std::string& name_, const std::string& description_, int num_
 
         
     }
+
+void pop_back(int *&arr, int &size_) {
+}
+
 
 
     void DisplayTasks() {
@@ -149,11 +169,12 @@ void AddTask(const std::string& name_, const std::string& description_, int num_
       ~TaskBook() {
         std::cout << "TaskBook destructor called." << std::endl;
     }
+    //delete[] arrT;                                                                                                              // Clean up dynamic array memory
 };
 
 
 
-int TaskBook::taskCount = 0;
+int TaskBook::taskCount = 0;                                                                                                     // Initialize static member                                                
 
 void HelpFunction() {
     std::cout << "This is a help function." << std::endl;
@@ -182,7 +203,13 @@ void DisplayMenu() {
 int main()
 {
 
+
     TaskBook::Task task1("Task 1", "Description for Task 1", 1, 1);
+    
+    int size =1;
+
+
+
 while(true)
 {
     int choice;
@@ -195,7 +222,7 @@ while(true)
 
     switch(choice) {
         case 1:
-            task1.AddTask("Task 1", "Description for Task 1", 1, 1);
+           // task1.AddTask(task1.arrT, "New Task", "Description for new task", 1, 1, size);
             break;
         case 2:
            // taskBook.RemoveTask();
@@ -230,8 +257,3 @@ while(true)
 
 return 0;
 }
-
-
-
-
-
