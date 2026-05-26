@@ -138,3 +138,7 @@ void DisplayMenu() {
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 184a35619ec5abe7f74d431092d834cd695e23a7
