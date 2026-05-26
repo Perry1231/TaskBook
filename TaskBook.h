@@ -30,6 +30,7 @@ public:
     void SortTasks();
     void FilterTasks();
     void OverrideTask();
+    void MarkTaskCompleted();
 
 private:
     Task* tasks;

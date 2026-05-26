@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <algorithm>
 #include "TaskBook.h"
 
@@ -42,7 +41,41 @@ void TaskBook::AddTask(const std::string& name_, const std::string& description_
 }
 
 void TaskBook::RemoveTask() {
+    if (size == 0) {
+        std::cout << "No tasks to remove." << std::endl;
+        return;
+    }
+    std::string input;
+    std::cout << "Enter task name or number to remove: ";
+    std::cin >> input;
 
+    int removeIndex = -1;
+    if (input[0] >= '0' && input[0] <= '9') {
+        int num = std::stoi(input);
+        for (int i = 0; i < size; i++) {
+            if (tasks[i].num == num) {
+                removeIndex = i;
+                break;
+            }
+        }
+    } else {
+        for (int i = 0; i < size; i++) {
+            if (tasks[i].name == input) {
+                removeIndex = i;
+                break;
+            }
+        }
+    }
+
+    if (removeIndex == -1) {
+        std::cout << "Task not found." << std::endl;
+        return;
+    }
+
+    for (int i = removeIndex; i < size - 1; i++)
+        tasks[i] = tasks[i + 1];
+    size--;
+    std::cout << "Task removed successfully." << std::endl;
 }
 
 void TaskBook::DisplayTasks() {
@@ -67,38 +100,88 @@ void TaskBook::SortTasks() {
         std::cout << "No tasks to sort." << std::endl;
         return;
     }
-    for (int i = 0; i < size; i++) {
-        std::cout << "Task " << tasks[i].num << ": " << tasks[i].name << std::endl;
+
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (tasks[j].priority < tasks[j + 1].priority ||
+                (tasks[j].priority == tasks[j + 1].priority && tasks[j].num > tasks[j + 1].num)) {
+                Task temp = tasks[j];
+                tasks[j] = tasks[j + 1];
+                tasks[j + 1] = temp;
+            }
+        }
     }
-    std::cout <<"\n" <<"===============================\n" << std::endl;
+
+    std::cout << "Tasks sorted by priority (highest first)." << std::endl;
+    DisplayTasks();
 }
 
 void TaskBook::FilterTasks() {
     std::cout <<"\n" <<"===============================\n" << std::endl;
-    std::string keyword;
     std::cout << "Filtering tasks..." << std::endl;
     std::cout << "===============================" << std::endl;
     std::cout << "Choice how to filter tasks:" << std::endl;
     std::cout << "1. Filter by name\n2. Filter by description\n3. Filter by priority\n4. Filter by completion status\n5. Filter by number\n";
-    std::cout << "Enter keyword to filter tasks: ";
-    std::cin >> keyword;
-    switch(keyword[0]) {
-        case '1':
+    std::cout << "Enter your choice: ";
+    int filterChoice;
+    std::cin >> filterChoice;
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Invalid input." << std::endl;
+        std::cout <<"\n" <<"===============================\n" << std::endl;
+        return;
+    }
+    switch(filterChoice) {
+        case 1:
             std::cout << "Filtering by name..." << std::endl;
             break;
-        case '2':
-            std::cout << "Filtering by number..." << std::endl;
+        case 2:
+            std::cout << "Filtering by description..." << std::endl;
             break;
-        case '3':
+        case 3:
             std::cout << "Filtering by priority..." << std::endl;
             break;
-        case '4':
+        case 4:
             std::cout << "Filtering by completion status..." << std::endl;
+            break;
+        case 5:
+            std::cout << "Filtering by number..." << std::endl;
             break;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
     }
     std::cout <<"\n" <<"===============================\n" << std::endl;
+}
+
+void TaskBook::MarkTaskCompleted() {
+    if (size == 0) {
+        std::cout << "No tasks to mark." << std::endl;
+        return;
+    }
+    std::string input;
+    std::cout << "Enter task name or number to mark as completed: ";
+    std::cin >> input;
+
+    if (input[0] >= '0' && input[0] <= '9') {
+        int num = std::stoi(input);
+        for (int i = 0; i < size; i++) {
+            if (tasks[i].num == num) {
+                tasks[i].completed = true;
+                std::cout << "Task " << num << " marked as completed." << std::endl;
+                return;
+            }
+        }
+    } else {
+        for (int i = 0; i < size; i++) {
+            if (tasks[i].name == input) {
+                tasks[i].completed = true;
+                std::cout << "Task \"" << input << "\" marked as completed." << std::endl;
+                return;
+            }
+        }
+    }
+    std::cout << "Task not found." << std::endl;
 }
 
 void TaskBook::OverrideTask() {
@@ -138,7 +221,3 @@ void DisplayMenu() {
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 184a35619ec5abe7f74d431092d834cd695e23a7

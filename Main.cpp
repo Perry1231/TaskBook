@@ -22,9 +22,24 @@ int main()
         }
 
         switch(choice) {
-        case 1:
-            taskBook.AddTask("New Task", "Description for new task", 1);
+        case 1: {
+            std::string name, description;
+            int priority;
+            std::cout << "Enter task name: ";
+            std::cin >> name;
+            std::cout << "Enter task description: ";
+            std::cin >> description;
+            std::cout << "Enter task priority: ";
+            std::cin >> priority;
+            if (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(10000, '\n');
+                std::cout << "Invalid priority." << std::endl;
+                break;
+            }
+            taskBook.AddTask(name, description, priority);
             break;
+        }
         case 2:
             std::cout << "Remove task not implemented yet." << std::endl;
             break;
@@ -32,7 +47,7 @@ int main()
             taskBook.DisplayTasks();
             break;
         case 4:
-            std::cout << "Mark task completed not implemented yet." << std::endl;
+            taskBook.MarkTaskCompleted();
             break;
         case 5:
             taskBook.SortTasks();
@@ -42,6 +57,9 @@ int main()
             break;
         case 7:
             taskBook.OverrideTask();
+            break;
+        case 8:
+            std::cout << "Choice Task not implemented yet." << std::endl;
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
