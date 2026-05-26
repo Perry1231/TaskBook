@@ -41,7 +41,7 @@ int main()
             break;
         }
         case 2:
-            std::cout << "Remove task not implemented yet." << std::endl;
+            taskBook.RemoveTask();
             break;
         case 3:
             taskBook.DisplayTasks();
