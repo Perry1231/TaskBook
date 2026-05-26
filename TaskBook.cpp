@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <algorithm>
 
-class TaskBook
+class TaskBook 
 {
     public:
     class Task 
@@ -14,7 +14,7 @@ class TaskBook
         int num;
         int priority;
         bool completed;
-
+ 
         Task() : num(0), priority(0), completed(false) {}                                                                   // Default constructor
 
         Task(const std::string& name_, const std::string& description_, int num_, int priority_)                            // Parameterized constructor    
@@ -46,7 +46,8 @@ class TaskBook
         std::cout << "TaskBook destructor called." << std::endl;
     }
 
-    void AddTask(const std::string& name_, const std::string& description_, int priority_) {                                 // Add a new task to the task book
+    void AddTask(const std::string& name_, const std::string& description_, int priority_) {                                 // Add a new task to the task book + Ready
+        std::cout <<"\n" <<"===============================\n" << std::endl;
         if (size >= capacity) resize(); 
         taskCount++;
         tasks[size++] = Task(name_, description_, taskCount, priority_);
@@ -57,11 +58,18 @@ class TaskBook
         std::cout << "Priority: " << priority_ << std::endl;
         std::cout << "Completed: false" << std::endl;
         std::cout << "Task added successfully!" << std::endl;
-        std::cout << "===============================\n" << std::endl;
+        std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
-    void DisplayTasks() {                                                                                                   // Display all tasks in the task book
-        std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                                              // Display all tasks in the task book                                   
+    void RemoveTask()                                                                                                       // Remove a task from the task book based on user input (by name or number)
+    {
+
+    }                                                                                                                       
+    
+
+
+    void DisplayTasks() {                                                                                                   // Display all tasks in the task book + Ready
+        std::cout <<"\n" <<"===============================\n" << std::endl;                                                // Display all tasks in the task book                                   
         if (size == 0) {
             std::cout << "No tasks to display." << std::endl;
             return;
@@ -74,7 +82,9 @@ class TaskBook
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
-    void SortTasks() {                                                                                                      // Sort tasks by priority (highest first) and then by number (lowest first)
+
+
+    void SortTasks() {                                                                                                      // Sort tasks by priority (highest first) and then by number (lowest first) + Ready
         std::cout <<"\n" <<"===============================\n" << std::endl;
         std::cout << "Sorting tasks..." << std::endl;
         std::cout << "===============================" << std::endl;
@@ -87,6 +97,9 @@ class TaskBook
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
+
+
+
 
     void FilterTasks()                                                                                                      // Filter tasks based on user input (name, description, priority, completion status, or number)
     {
@@ -103,7 +116,7 @@ class TaskBook
                 std::cout << "Filtering by name..." << std::endl;
                 break;
             case '2':
-                std::cout << "Filtering by description..." << std::endl;
+                std::cout << "Filtering by number..." << std::endl;
                 break;
             case '3':
                 std::cout << "Filtering by priority..." << std::endl;
@@ -111,16 +124,14 @@ class TaskBook
             case '4':
                 std::cout << "Filtering by completion status..." << std::endl;
                 break;
-            case '5':
-                std::cout << "Filtering by number..." << std::endl;
-                break;
             default:
                 std::cout << "Invalid choice. Please try again." << std::endl;
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
-    void OverrideTask() {                                                                                                    // Override the last task in the task book with new details provided by the user                                               
+
+    void OverrideTask() {                                                                                                    // Override the last task in the task book with new details provided by the user   + Ready                                            
         if (size == 0) {
             std::cout << "No tasks to override." << std::endl;
             return;
@@ -136,10 +147,6 @@ class TaskBook
         tasks[size - 1].priority = priority;
         tasks[size - 1].completed = false;
     }
-
-    void ChoiceTask() {                                                                                                    // Choose a random task from the task book and display its details                                                       
-        std::cout << "Choosing a random task..." << std::endl;
-    }
 };
 
 int TaskBook::taskCount = 0;                                                                                                // Initialize static member variable
@@ -148,7 +155,8 @@ void HelpFunction() {                                                           
     std::cout << "This is a help function." << std::endl;
 }
 
-void DisplayMenu() {                                                                                                        // Display the main menu of the TaskBook application                                              
+void DisplayMenu() {   
+    std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                              
     std::cout << "TaskBook Menu:" << std::endl;
     std::cout << "1. Add Task" << std::endl;
     std::cout << "2. Remove Task" << std::endl;
@@ -159,6 +167,7 @@ void DisplayMenu() {                                                            
     std::cout << "7. Override Task" << std::endl;
     std::cout << "8. Choice Task" << std::endl;
     std::cout << "0. Exit" << std::endl;
+    std::cout <<"\n" <<"===============================\n" << std::endl;
 }
 
 int main()
@@ -202,9 +211,6 @@ int main()
             break;
         case 7:
             taskBook.OverrideTask();
-            break;
-        case 8:
-            taskBook.ChoiceTask();
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
