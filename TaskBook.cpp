@@ -4,9 +4,11 @@
 #include <cstdlib>
 #include <algorithm>
 
+int TaskBook::Task::taskCount = 0;                                                                                                // Initialize static member variable
 
 TaskBook::TaskBook()
 {
+
     class Task 
     {
     public:
@@ -27,7 +29,7 @@ TaskBook::TaskBook()
     int capacity;
     int size;
 
-    void resize() 
+    void Resize() 
     {                                                                                                         // Resize the tasks array when capacity is reached
         int newCap = (capacity == 0) ? 4 : capacity * 2;                                                                    // Double the capacity when resizing
         Task* newTasks = new Task[newCap];
@@ -39,7 +41,7 @@ TaskBook::TaskBook()
     }
 
     public:
-    static int taskCount;
+   
 
     TaskBook()  tasks(nullptr), capacity(0), size(0) {}
 

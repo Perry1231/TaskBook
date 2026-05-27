@@ -5,21 +5,7 @@
 
 class TaskBook 
 {
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-    void HelpFunction();
-    void DisplayMenu();
-    public:
-=======
 public:
->>>>>>> theirs
-=======
-public:
->>>>>>> theirs
-=======
-public:
->>>>>>> theirs
     class Task 
     {
     public:
@@ -34,26 +20,6 @@ public:
             : name(name_), description(description_), num(num_), priority(priority_), completed(false) {}
     };
 
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-void DisplayTasks();
-void SortTasks();
-void FilterTasks();
-void OverrideTask();
-void ChoiceTask();
-void RemoveTask();
-void AddTask(const std::string& name_, const std::string& description_, int priority_);
-void MarkTaskCompleted();
-};
-
-int TaskBook::taskCount = 0;
-#endif
-=======
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
     TaskBook();
     ~TaskBook();
 
@@ -79,10 +45,3 @@ void DisplayMenu();
 void HelpFunction();
 
 #endif
-<<<<<<< ours
-<<<<<<< ours
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs

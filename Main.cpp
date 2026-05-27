@@ -3,13 +3,13 @@
 
 int main()
 {
-    TaskBook taskBook;
+    TaskBook taskBook;                                                                      // Create an object
 
     while(true)
     {
-        int choice;
+        int choice;                                                                         // Display the main menu and get user input
 
-        DisplayMenu();
+        taskBook.DisplayMenu();                                                             // Calling function DisplayMenu
 
         std::cout << "Enter your choice: ";
         std::cin >> choice;
