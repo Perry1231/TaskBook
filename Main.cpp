@@ -24,7 +24,7 @@ int main()
         switch(choice) {
         case 1: {
             std::string name, description;
-            int priority;
+            int priority=0;
             std::cout << "Enter task name: ";
             std::cin >> name;
             std::cout << "Enter task description: ";
