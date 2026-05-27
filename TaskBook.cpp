@@ -152,3 +152,18 @@ void DisplayMenu() {
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
 }
+
+
+void TaskBook::MarkTaskCompleted() {
+    int num;
+    std::cout << "Enter task number to mark completed: ";
+    std::cin >> num;
+    for (int i = 0; i < size; ++i) {
+        if (tasks[i].num == num) {
+            tasks[i].completed = true;
+            std::cout << "Task " << num << " completed!\n";
+            return;
+        }
+    }
+    std::cout << "Task not found.\n";
+}
