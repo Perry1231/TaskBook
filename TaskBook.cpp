@@ -33,12 +33,12 @@ void TaskBook::Resize() {
     void TaskBook::AddTask(const std::string& name_, const std::string& description_, int priority_) {                                 // Add a new task to the task book + Ready
         std::cout <<"\n" <<"===============================\n" << std::endl;
         if (size >= capacity) Resize(); 
-        taskCount++;
-        tasks[size++] = Task(name_, description_, taskCount, priority_);
+        TaskBook::Task::taskCount++;
+        tasks[size++] = Task(name_, description_, TaskBook::Task::taskCount, priority_);
         std::cout << "Adding task: " << name_ << std::endl;
         std::cout << "===============================" << std::endl;
         std::cout << "Description: " << description_ << std::endl;
-        std::cout << "Number: " << taskCount << std::endl;
+        std::cout << "Number: " << TaskBook::Task::taskCount << std::endl;
         std::cout << "Priority: " << priority_ << std::endl;
         std::cout << "Completed: false" << std::endl;
         std::cout << "Task added successfully!" << std::endl;
@@ -89,6 +89,7 @@ void TaskBook::Resize() {
     {
         std::cout <<"\n" <<"===============================\n" << std::endl;
         std::string keyword;
+        std::cin >> keyword;
         std::cout << "Filtering tasks..." << std::endl;
         std::cout << "===============================" << std::endl;
         std::cout << "Choice how to filter tasks:" << std::endl;
@@ -97,13 +98,13 @@ void TaskBook::Resize() {
         std::cin >> keyword;
         switch(keyword[0]) {
            
-            case 1:
+            case '1':
                 std::cout << "Filtering by number..." << std::endl;
                 break;
-            case 2:
+            case '2':
                 std::cout << "Filtering by status..." << std::endl;
                 break;
-            case 3:
+            case '3':
                 std::cout << "Filtering by priority..." << std::endl;
                 break;
             default:
@@ -131,12 +132,7 @@ void TaskBook::Resize() {
         tasks[size - 1].completed = false;
     }
 
-
-};
-
-                                                                                             // Initialize static member variable
-
-int TaskBook::Task::taskCount = 0;
+                                                                        
 
 void HelpFunction() {                                                                                                       // A help function to provide information about the TaskBook application
     std::cout << "This is a help function." << std::endl;
