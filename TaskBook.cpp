@@ -4,8 +4,7 @@
 #include <cstdlib>
 #include <algorithm>
 
-int TaskBook::Task::taskCount = 0;   
-
+int TaskBook::taskCount = 0;
 
 TaskBook::TaskBook()
     : tasks(nullptr), capacity(0), size(0)
@@ -19,7 +18,7 @@ TaskBook::~TaskBook() {
 }
 
 
-void TaskBook::Resize() {
+void TaskBook::Resize() {  
     int newCapacity = (capacity == 0) ? 10 : capacity * 2;
     Task* newTasks = new Task[newCapacity];
     for (int i = 0; i < size; ++i)
@@ -32,13 +31,13 @@ void TaskBook::Resize() {
 
     void TaskBook::AddTask(const std::string& name_, const std::string& description_, int priority_) {                                 // Add a new task to the task book + Ready
         std::cout <<"\n" <<"===============================\n" << std::endl;
-        if (size >= capacity) Resize(); 
-        TaskBook::Task::taskCount++;
-        tasks[size++] = Task(name_, description_, TaskBook::Task::taskCount, priority_);
+        if (size >= capacity) TaskBook::Resize(); 
+        taskCount++;
+        tasks[size++] = Task(name_, description_, taskCount, priority_);
         std::cout << "Adding task: " << name_ << std::endl;
         std::cout << "===============================" << std::endl;
         std::cout << "Description: " << description_ << std::endl;
-        std::cout << "Number: " << TaskBook::Task::taskCount << std::endl;
+        std::cout << "Number: " << taskCount << std::endl;
         std::cout << "Priority: " << priority_ << std::endl;
         std::cout << "Completed: false" << std::endl;
         std::cout << "Task added successfully!" << std::endl;
