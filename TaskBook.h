@@ -22,9 +22,13 @@ class TaskBook
             : name(name_), description(description_), num(num_), priority(priority_), completed(false) {}
 
              static int taskCount;
+
     };
     public:
     
+    TaskBook();
+    ~TaskBook();
+        
 void Resize();
 void DisplayTasks();
 void SortTasks();
