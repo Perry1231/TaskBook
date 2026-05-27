@@ -7,9 +7,13 @@ class TaskBook
 {
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
     void HelpFunction();
     void DisplayMenu();
     public:
+=======
+public:
+>>>>>>> theirs
 =======
 public:
 >>>>>>> theirs
@@ -32,6 +36,7 @@ public:
 
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
 void DisplayTasks();
 void SortTasks();
 void FilterTasks();
@@ -45,6 +50,8 @@ void MarkTaskCompleted();
 int TaskBook::taskCount = 0;
 #endif
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
     TaskBook();
@@ -73,6 +80,9 @@ void HelpFunction();
 
 #endif
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
