@@ -1,14 +1,15 @@
 #include "TaskBook.h"
 #include <iostream>
+#include <limits>
 
 int main()
 {
     int choice;  
-    TaskBook taskBook;                                                                      // Create an object
+    TaskBook taskBook;
 
     while(true)
-    {                                                                       // Display the main menu and get user input
-        DisplayMenu();                                                         // Calling function DisplayMenu
+    {
+        DisplayMenu();
 
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -19,6 +20,8 @@ int main()
             std::cout << "Invalid input! Please enter a number." << std::endl;
             continue;
         }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch(choice) {
         case 1: {
@@ -49,16 +52,19 @@ int main()
             taskBook.MarkTaskCompleted();
             break;
         case 5:
-            taskBook.SortTasks();
+            taskBook.CopyTask();
             break;
         case 6:
-            taskBook.FilterTasks();
+            taskBook.SortTasks();
             break;
         case 7:
-            taskBook.OverrideTask();
+            taskBook.FilterTasks();
             break;
         case 8:
-            std::cout << "Choice Task not implemented yet." << std::endl;
+            taskBook.OverrideTask();
+            break;
+        case 9:
+            taskBook.ChoiceTask();
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
@@ -70,4 +76,3 @@ int main()
 
     return 0;
 }
-

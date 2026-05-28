@@ -1,8 +1,7 @@
 #ifndef TASKBOOK_H
 #define TASKBOOK_H
 #include <string>
-#include <iostream>
-
+#include <vector>
 
 class TaskBook 
 {
@@ -16,20 +15,17 @@ class TaskBook
         int priority;
         bool completed;
  
-        Task() : num(0), priority(0), completed(false) {}                                                                   // Default constructor
+        Task() : num(0), priority(0), completed(false) {}
 
-        Task(const std::string& name_, const std::string& description_, int num_, int priority_)                            // Parameterized constructor    
+        Task(const std::string& name_, const std::string& description_, int num_, int priority_)
             : name(name_), description(description_), num(num_), priority(priority_), completed(false) {}
 
              static int taskCount;
-
     };
     public:
     
-    TaskBook();
-    ~TaskBook();
-        
-void Resize();
+    TaskBook() = default;
+
 void DisplayTasks();
 void SortTasks();
 void FilterTasks();
@@ -40,9 +36,7 @@ void AddTask(const std::string& name_, const std::string& description_, int prio
 void MarkTaskCompleted();
 
  private:
-    Task* tasks;
-    int capacity;
-    int size;
+    std::vector<Task> tasks;
 };
 
 

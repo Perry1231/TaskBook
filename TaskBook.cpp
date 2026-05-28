@@ -7,10 +7,9 @@
 int TaskBook::Task::taskCount = 0;
 
 
-TaskBook::TaskBook()
-    : tasks(nullptr), capacity(0), size(0)
-{
-}
+
+    TaskBook::TaskBook() : tasks(nullptr), capacity(0), size(0) {}
+
 
 // Деструктор
 TaskBook::~TaskBook() {
@@ -47,7 +46,32 @@ void TaskBook::Resize() {
 
     void TaskBook::RemoveTask()                                                                                                       // Remove a task from the task book based on user input (by name or number)
     {
-
+        std::cout <<"\n" <<"===============================\n" << std::endl; 
+        if (size == 0) {
+            std::cout << "No tasks to remove." << std::endl;
+            return;
+        }
+        else if (size == 1) {
+            std::cout << "Removing the only task: " << tasks[0].name << std::endl;
+            size = 0;
+            return;
+        }
+        else if(size > 1) {
+            std::string keyw;
+            std::cout << "Enter task name or number to remove: ";
+            std::cin >> keyw;
+            for (int i = 0; i < size; ++i) {
+                if (tasks[i].name == keyw || std::to_string(tasks[i].num) == keyw) {
+                    std::cout << "Removing task: " << tasks[i].name << std::endl;
+                    for (int j = i; j < size - 1; ++j)
+                        tasks[j] = tasks[j + 1];
+                    size--;
+                    std::cout << "Task removed successfully!" << std::endl;
+                    return;
+                }
+            }
+            std::cout << "Task not found." << std::endl;
+        }
     }                                                                                                                       
     
 
@@ -65,6 +89,25 @@ void TaskBook::Resize() {
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
+
+void CopyTask(int size, int capacity) 
+{                              
+    std::cout <<"\n" <<"===============================\n" << std::endl; 
+    std::cout << "Copying a task..." << std::endl;
+    std::cout << "===============================" << std::endl;
+    std::cout << "Enter task number to copy: ";
+    int num;
+    std::cin >> num;
+    for (int i = 0; i < size; ++i) {
+        if (tasks[i].num == num) {
+            if (size >= capacity) TaskBook::Resize();
+            tasks[size++] = tasks[i];
+            std::cout << "Task " << num << " copied successfully!" << std::endl;
+            return;
+        }
+    }
+    std::cout << "Task not found." << std::endl;                     
+}
 
 
 
@@ -167,3 +210,19 @@ void TaskBook::MarkTaskCompleted() {
     }
     std::cout << "Task not found.\n";
 }
+
+
+
+
+TaskBook &operator = (const TaskBook &other, int size, int capacity)
+{
+    this -> size = other.size;
+    this -> capacity = other.capacity;
+    if(this -> tasks != nullptr) delete[] this -> tasks;
+    this -> tasks = new Task[this ->capacity];
+    for(int i = 0; i < this -> size; i++)
+    {
+        this -> tasks[i] = other.tasks[i];
+    }
+        return *this;
+};
