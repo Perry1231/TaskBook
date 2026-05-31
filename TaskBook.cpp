@@ -188,6 +188,7 @@ void DisplayMenu() {
     std::cout << "2. Remove Task" << std::endl;
     std::cout << "3. Display Tasks" << std::endl;
     std::cout << "4. Mark Task Completed" << std::endl;
+    std::cout << "5. Copy Task" << std::endl;
     std::cout << "5. Sort Tasks" << std::endl;
     std::cout << "6. Filter Tasks" << std::endl;
     std::cout << "7. Override Task" << std::endl;
@@ -214,7 +215,7 @@ void TaskBook::MarkTaskCompleted() {
 
 
 
-TaskBook &TaskBook::operator = (const TaskBook &other)
+TaskBook &TaskBook::operator = (const TaskBook &other)                                          // Assignment operator to copy the contents of one TaskBook to another, ensuring proper memory management and deep copying of tasks
 {
     this -> size = other.size;
     this -> capacity = other.capacity;
@@ -224,5 +225,5 @@ TaskBook &TaskBook::operator = (const TaskBook &other)
     {
         this -> tasks[i] = other.tasks[i];
     }
-        return *this;
+        return *this;+
 };
