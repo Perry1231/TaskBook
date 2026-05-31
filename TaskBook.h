@@ -16,7 +16,7 @@ class TaskBook
         int priority;
         bool completed;
  
-        Task() : num(0), priority(0), completed(false) , description(0), name(0){}                                          // Default constructor
+        Task() : num(0), priority(0), completed(false) , description(""), name(""){}                                          // Default constructor
 
         Task(const std::string& name_, const std::string& description_, int num_, int priority_)                            // Parameterized constructor    
             : name(name_), description(description_), num(num_), priority(priority_), completed(false) {}
@@ -38,7 +38,7 @@ void ChoiceTask();
 void RemoveTask();
 void AddTask(const std::string& name_, const std::string& description_, int priority_);
 void MarkTaskCompleted();
-void CopyTask();
+void CopyTask(int size, int capacity);
 TaskBook &operator = (const TaskBook &other);
 
  private:

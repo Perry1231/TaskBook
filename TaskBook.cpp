@@ -18,6 +18,21 @@ TaskBook::~TaskBook() {
 }
 
 
+TaskBook &TaskBook::operator = (const TaskBook &other)                                          // Assignment operator to copy the contents of one TaskBook to another, ensuring proper memory management and deep copying of tasks
+{
+    this -> size = other.size;
+    this -> capacity = other.capacity;
+    if(this -> tasks != nullptr) delete[] this -> tasks;
+    this -> tasks = new Task[this ->capacity];
+    for(int i = 0; i < this -> size; i++)
+    {
+        this -> tasks[i] = other.tasks[i];
+    }
+        return *this;
+}
+
+
+
 void TaskBook::Resize() {  
     int newCapacity = (capacity == 0) ? 10 : capacity * 2;
     Task* newTasks = new Task[newCapacity];
@@ -90,19 +105,25 @@ void TaskBook::Resize() {
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
-void CopyTask(int size, int capacity) 
-{                              
+void TaskBook::CopyTask(int size, int capacity) 
+{                     
+    int num, num_c;         
     std::cout <<"\n" <<"===============================\n" << std::endl; 
     std::cout << "Copying a task..." << std::endl;
     std::cout << "===============================" << std::endl;
-    std::cout << "Enter task number to copy: ";
-    int num;
-    std::cin >> num;
+    std::cout << "Enter task number to be copied: ";
+     std::cin >> num;
+    std::cout << "Enter task number to write copy in: ";
+    std::cin >> num_c;
     for (int i = 0; i < size; ++i) {
         if (tasks[i].num == num) {
             if (size >= capacity) TaskBook::Resize();
-            tasks[size++] = tasks[i];
+            tasks[num_c] = tasks[num];
             std::cout << "Task " << num << " copied successfully!" << std::endl;
+            return;
+        }
+        else if (tasks[i].num == num_c) {
+            std::cout << "Task number " << num_c << " already exists. Please choose a different number." << std::endl;
             return;
         }
     }
@@ -163,19 +184,47 @@ void CopyTask(int size, int capacity)
             std::cout << "No tasks to override." << std::endl;
             return;
         }
-        std::string othername, description;
+        else 
+        {
+        std::string othername, odescription;
         int priority;
         std::cout << "Enter new task name, description, and priority: ";
-        std::cin >> othername >> description >> priority;
+        std::cin >> othername >> odescription >> priority;
         std::cout <<"\n" <<"===============================\n" << std::endl;
         std::cout << "Overriding the last task: " << othername << std::endl;
+        tasks[size - 1].num = tasks[size - 1].num; 
         tasks[size - 1].name = othername;
-        tasks[size - 1].description = description;
+        tasks[size - 1].description = odescription;
         tasks[size - 1].priority = priority;
         tasks[size - 1].completed = false;
+        }
     }
 
-                                                                        
+           
+    void TaskBook::ChoiceTask()                                                                                                      // Allow the user to choose a task by name or number and display its details + Ready
+    {
+        std::cout <<"\n" <<"===============================\n" << std::endl;
+        std::string keyw;
+        std::cout << "Enter task name or number to view details: ";
+        std::cin >> keyw;
+        for (int i = 0; i < size; ++i) {
+            if (tasks[i].name == keyw || std::to_string(tasks[i].num) == keyw) {
+                std::cout << "Task " << tasks[i].num << ": " << tasks[i].name << std::endl;
+                std::cout << "Description: " << tasks[i].description << std::endl;
+                std::cout << "Priority: " << tasks[i].priority << std::endl;
+                std::cout << "Completed: " << (tasks[i].completed ? "Yes" : "No") << std::endl;
+                return;
+            }
+            else if (tasks[i].name == keyw || std::to_string(tasks[i].num) == keyw) {
+                std::cout << "Task not found." << std::endl;
+                continue;
+            }
+        }
+
+        std::cout << "Task not found." << std::endl;
+    }
+
+
 
 void HelpFunction() {                                                                                                       // A help function to provide information about the TaskBook application
     std::cout << "This is a help function." << std::endl;
@@ -215,15 +264,3 @@ void TaskBook::MarkTaskCompleted() {
 
 
 
-TaskBook &TaskBook::operator = (const TaskBook &other)                                          // Assignment operator to copy the contents of one TaskBook to another, ensuring proper memory management and deep copying of tasks
-{
-    this -> size = other.size;
-    this -> capacity = other.capacity;
-    if(this -> tasks != nullptr) delete[] this -> tasks;
-    this -> tasks = new Task[this ->capacity];
-    for(int i = 0; i < this -> size; i++)
-    {
-        this -> tasks[i] = other.tasks[i];
-    }
-        return *this;+
-};

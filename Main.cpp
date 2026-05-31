@@ -39,32 +39,32 @@ int main()
                 std::cout << "Invalid priority." << std::endl;
                 break;
             }
-            taskBook.AddTask(name, description, priority);
+            taskBook.AddTask(name, description, priority);                  //Ready
             break;
         }
         case 2:
-            taskBook.RemoveTask();
+            taskBook.RemoveTask();                                          //Ready
             break;
         case 3:
-            taskBook.DisplayTasks();
+            taskBook.DisplayTasks();                                         //Ready         
             break;
         case 4:
-            taskBook.MarkTaskCompleted();
-            break;
+            taskBook.MarkTaskCompleted();                                   //Ready
+            break;      
         case 5:
-            taskBook.CopyTask();
+            taskBook.CopyTask();                                            //Ready
             break;
         case 6:
-            taskBook.SortTasks();
+            taskBook.SortTasks();                                           //Ready
             break;
         case 7:
-            taskBook.FilterTasks();
+            taskBook.FilterTasks();                                         //Not Ready
             break;
-        case 8:
-            taskBook.OverrideTask();
+        case 8: 
+            taskBook.OverrideTask();                                        //Ready
             break;
         case 9:
-            taskBook.ChoiceTask();
+            taskBook.ChoiceTask();                                          //Ready         
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;
