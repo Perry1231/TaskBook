@@ -214,7 +214,7 @@ void TaskBook::MarkTaskCompleted() {
 
 
 
-TaskBook &operator = (const TaskBook &other, int size, int capacity)
+TaskBook &TaskBook::operator = (const TaskBook &other)
 {
     this -> size = other.size;
     this -> capacity = other.capacity;
