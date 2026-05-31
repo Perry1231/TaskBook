@@ -105,7 +105,7 @@ void TaskBook::Resize() {
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
-void TaskBook::CopyTask(int size, int capacity) 
+void TaskBook::CopyTask() 
 {                     
     int num, num_c;         
     std::cout <<"\n" <<"===============================\n" << std::endl; 

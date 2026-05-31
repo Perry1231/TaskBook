@@ -38,7 +38,7 @@ void ChoiceTask();
 void RemoveTask();
 void AddTask(const std::string& name_, const std::string& description_, int priority_);
 void MarkTaskCompleted();
-void CopyTask(int size, int capacity);
+void CopyTask();
 TaskBook &operator = (const TaskBook &other);
 
  private:
@@ -50,6 +50,8 @@ TaskBook &operator = (const TaskBook &other);
 
 void HelpFunction();
 void DisplayMenu();
+
+
 
 
 #endif
