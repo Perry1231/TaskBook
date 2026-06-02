@@ -88,8 +88,10 @@ void TaskBook::Resize() {
     
 
 
-    void TaskBook::DisplayTasks() {                                                                                                   // Display all tasks in the task book + Ready
-        std::cout <<"\n" <<"===============================\n" << std::endl;                                                // Display all tasks in the task book                                   
+    void TaskBook::DisplayTasks() {    
+        std::cout <<"\n\n\n";                                                                                               // Display all tasks in the task book + Ready
+        std::cout <<"\n" <<"===============================\n" << std::endl;                                                // Display all tasks in the task book             
+        std::cout << "Displaying tasks..." << std::endl;                      
         if (size == 0) {
             std::cout << "No tasks to display." << std::endl;
             return;
@@ -100,6 +102,7 @@ void TaskBook::Resize() {
                       << " | Completed: " << (tasks[i].completed ? "Yes" : "No") << std::endl;
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
+            std::cout <<"\n\n\n";    
     }
 
 void TaskBook::CopyTask() 
@@ -291,10 +294,10 @@ void DisplayMenu() {
     std::cout << "3. Display Tasks" << std::endl;
     std::cout << "4. Mark Task Completed" << std::endl;
     std::cout << "5. Copy Task" << std::endl;
-    std::cout << "5. Sort Tasks" << std::endl;
     std::cout << "6. Filter Tasks" << std::endl;
     std::cout << "7. Override Task" << std::endl;
     std::cout << "8. Choice Task" << std::endl;
+    std::cout << "9. Help Function" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
 }
