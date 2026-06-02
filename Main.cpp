@@ -46,7 +46,7 @@ int main()
             taskBook.RemoveTask();                                          //Ready
             break;
         case 3:
-            taskBook.DisplayTasks();                                         //Ready         
+            taskBook.DisplayTasks();                                        //Ready         
             break;
         case 4:
             taskBook.MarkTaskCompleted();                                   //Ready
@@ -55,16 +55,16 @@ int main()
             taskBook.CopyTask();                                            //Ready
             break;
         case 6:
-            taskBook.SortTasks();                                           //Ready
+            taskBook.FilterTasks();                                         //Ready
             break;
-        case 7:
-            taskBook.FilterTasks();                                         //Not Ready
-            break;
-        case 8: 
+        case 7: 
             taskBook.OverrideTask();                                        //Ready
             break;
-        case 9:
+        case 8:
             taskBook.ChoiceTask();                                          //Ready         
+            break;
+        case 9:
+            HelpFunction();                                                 //Ready
             break;
         case 0:
             std::cout << "Exiting..." << std::endl;

@@ -31,7 +31,9 @@ class TaskBook
         
 void Resize();
 void DisplayTasks();
-void SortTasks();
+void SortTasksNum();
+void SortTasksStatus();
+void SortTasksPriority();
 void FilterTasks();
 void OverrideTask();
 void ChoiceTask();
