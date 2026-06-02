@@ -279,14 +279,17 @@ void TaskBook::MarkTaskCompleted() {
 
 //==========================================Other functions====================================================================================
 void HelpFunction() {    
+        std::cout <<"\n\n\n";    
     std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                                                                                                          // A help function to provide information about the TaskBook application
     std::cout << "This is a help function." << std::endl;
     std::cout << "You can use this application to manage your tasks." << std::endl;
     std::cout << "You can add, remove, display, mark as completed, copy, sort, filter, override, and choose tasks." << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
+        std::cout <<"\n\n\n";    
 }
 
 void DisplayMenu() {   
+        std::cout <<"\n\n\n";    
     std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                              
     std::cout << "TaskBook Menu:" << std::endl;
     std::cout << "1. Add Task" << std::endl;
@@ -300,6 +303,7 @@ void DisplayMenu() {
     std::cout << "9. Help Function" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
+        std::cout <<"\n\n\n";    
 }
 
 //==========================================================================================================================================
