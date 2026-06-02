@@ -1,6 +1,7 @@
 #include "TaskBook.h"
 #include <iostream>
 #include <limits>
+#include <string>
 
 int main()
 {
