@@ -119,13 +119,18 @@ void TaskBook::CopyTask()
     std::cout << "Copying a task..." << std::endl;
     std::cout << "===============================" << std::endl;
     std::cout << "Enter task number to be copied: ";
-     std::cin >> num;
+    std::cin >> num;
     std::cout << "Enter task number to write copy in: ";
     std::cin >> num_c;
     for (int i = 0; i < size; ++i) {
         if (tasks[i].num == num) {
             if (size >= capacity) TaskBook::Resize();
             tasks[num_c] = tasks[num];
+            tasks[num_c].num = num_c;
+            tasks[num_c].completed = false;
+            tasks[num_c].priority = tasks[num].priority;
+            tasks[num_c].name = tasks[num].name;
+            tasks[num_c].description = tasks[num].description;
             std::cout << "Task " << num << " copied successfully!" << std::endl;
             return;
         }
@@ -305,8 +310,7 @@ void HelpFunction() {
         std::cout <<"\n\n";    
 }
 
-void DisplayMenu() {   
-        std::cout <<"\n";    
+void DisplayMenu() {     
     std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                              
     std::cout << "TaskBook Menu:" << std::endl;
     std::cout << "1. Add Task" << std::endl;
