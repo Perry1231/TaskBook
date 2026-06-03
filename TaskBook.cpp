@@ -3,6 +3,8 @@
 #include <string>
 #include <cstdlib>
 #include <algorithm>
+#include <thread>
+#pragma endregion
 
 int TaskBook::Task::taskCount = 0;
     TaskBook::TaskBook() : tasks(nullptr), capacity(0), size(0) {}
@@ -54,6 +56,7 @@ void TaskBook::Resize() {
         std::cout << "Completed: false" << std::endl;
         std::cout << "Task added successfully!" << std::endl;
         std::cout <<"\n" <<"===============================\n" << std::endl;
+        std::cout <<"\n\n";
     }
 
     void TaskBook::RemoveTask()                                                                                                       // Remove a task from the task book based on user input (by name or number)
@@ -84,25 +87,29 @@ void TaskBook::Resize() {
             }
             std::cout << "Task not found." << std::endl;
         }
+        std::cout <<"\n" <<"===============================\n" << std::endl;
+        std::cout <<"\n\n";
     }                                                                                                                       
     
 
 
     void TaskBook::DisplayTasks() {    
-        std::cout <<"\n\n\n";                                                                                               // Display all tasks in the task book + Ready
-        std::cout <<"\n" <<"===============================\n" << std::endl;                                                // Display all tasks in the task book             
+        std::cout <<"\n\n";                                                                                               // Display all tasks in the task book + Ready
+        std::cout <<"\n" <<"===============================\n" << std::endl;                                                // Display all tasks in the task book   
+        std::this_thread::sleep_for(std::chrono::seconds(1));          
         std::cout << "Displaying tasks..." << std::endl;                      
         if (size == 0) {
             std::cout << "No tasks to display." << std::endl;
             return;
         }
         for (int i = 0; i < size; i++) {
-            std::cout << "Task " << tasks[i].num << ": " << tasks[i].name
-                      << " | Priority: " << tasks[i].priority
-                      << " | Completed: " << (tasks[i].completed ? "Yes" : "No") << std::endl;
+            std::cout << "Task " << tasks[i].num << ": " 
+                    << " | Name: " << tasks[i].name
+                    << " | Priority: " << tasks[i].priority
+                    << " | Completed: " << (tasks[i].completed ? "Yes" : "No") << std::endl;
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
-            std::cout <<"\n\n\n";    
+            std::cout <<"\n\n";    
     }
 
 void TaskBook::CopyTask() 
@@ -142,7 +149,10 @@ void TaskBook::CopyTask()
             std::cout << "No tasks to sort." << std::endl;
             return;
         }
-        for (int i = 0; i < size; i++) {
+         std::sort(tasks, tasks + size, [](const Task& a, const Task& b) {                                                              // Sort tasks by number (lowest first)
+        return a.num < b.num;
+         });
+        for (int i = 0; i < size-1; i++) {
             std::cout << "Task " << tasks[i].num << ": " << tasks[i].name << std::endl;
         }
         std::cout <<"\n" <<"===============================\n" << std::endl;
@@ -157,9 +167,13 @@ void TaskBook ::SortTasksStatus() {                                             
             std::cout << "No tasks to sort." << std::endl;
             return;
         }
-        for (int i = 0; i < size; i++) {
-            std::cout << "Task " << tasks[i].completed << ": " << tasks[i].name << std::endl;
-        }
+         std::sort(tasks, tasks + size, [](const Task& a, const Task& b) {
+        return a.completed < b.completed;
+         });
+        for (int i = 0; i < size-1; i++) {
+               std::cout << "Task " << tasks[i].num << ": " << tasks[i].name
+                  << " | Status: " << (tasks[i].completed ? "Completed" : "Uncompleted") << std::endl;
+    }
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
@@ -173,9 +187,13 @@ void TaskBook ::SortTasksStatus() {                                             
             std::cout << "No tasks to sort." << std::endl;
             return;
         }
-        for (int i = 0; i < size; i++) {
-            std::cout << "Task " << tasks[i].priority << ": " << tasks[i].name << std::endl;
-        }
+         std::sort(tasks, tasks + size, [](const Task& a, const Task& b) {
+        return a.priority > b.priority;  
+        });
+        for (int i = 0; i < size-1; i++) {
+             std::cout << "Task " << tasks[i].num << ": " << tasks[i].name
+                  << " | Priority: " << tasks[i].priority << std::endl;
+    }
         std::cout <<"\n" <<"===============================\n" << std::endl;
     }
 
@@ -186,11 +204,10 @@ void TaskBook ::SortTasksStatus() {                                             
 
     void TaskBook::FilterTasks()                                                                                                      // Filter tasks based on user input (name, description, priority, completion status, or number)
     {
-        std::cout <<"\n" <<"===============================\n" << std::endl;
         std::string keyword;
-        std::cin >> keyword;
+        std::cout <<"\n" <<"===============================\n" << std::endl;
         std::cout << "Filtering tasks..." << std::endl;
-        std::cout << "===============================" << std::endl;
+        std::cout << "\n\n" << std::endl;
         std::cout << "Choice how to filter tasks:" << std::endl;
         std::cout << "1. Filter by number\n2. Filter by completion status\n3. Filter by priority\n";
         std::cout << "Enter keyword to filter tasks: ";
@@ -279,23 +296,23 @@ void TaskBook::MarkTaskCompleted() {
 
 //==========================================Other functions====================================================================================
 void HelpFunction() {    
-        std::cout <<"\n\n\n";    
+        std::cout <<"\n\n";    
     std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                                                                                                          // A help function to provide information about the TaskBook application
     std::cout << "This is a help function." << std::endl;
     std::cout << "You can use this application to manage your tasks." << std::endl;
     std::cout << "You can add, remove, display, mark as completed, copy, sort, filter, override, and choose tasks." << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
-        std::cout <<"\n\n\n";    
+        std::cout <<"\n\n";    
 }
 
 void DisplayMenu() {   
-        std::cout <<"\n\n\n";    
+        std::cout <<"\n";    
     std::cout <<"\n" <<"===============================\n" << std::endl;                                                                                             // Display the main menu of the TaskBook application                                              
     std::cout << "TaskBook Menu:" << std::endl;
     std::cout << "1. Add Task" << std::endl;
     std::cout << "2. Remove Task" << std::endl;
     std::cout << "3. Display Tasks" << std::endl;
-    std::cout << "4. Mark Task Completed" << std::endl;
+    std::cout << "4. Mark Task 'Completed'" << std::endl;
     std::cout << "5. Copy Task" << std::endl;
     std::cout << "6. Filter Tasks" << std::endl;
     std::cout << "7. Override Task" << std::endl;
@@ -303,7 +320,7 @@ void DisplayMenu() {
     std::cout << "9. Help Function" << std::endl;
     std::cout << "0. Exit" << std::endl;
     std::cout <<"\n" <<"===============================\n" << std::endl;
-        std::cout <<"\n\n\n";    
+        std::cout <<"\n\n";    
 }
 
 //==========================================================================================================================================
