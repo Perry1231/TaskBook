@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <thread>
-#pragma endregion
+
 
 int TaskBook::Task::taskCount = 0;
     TaskBook::TaskBook() : tasks(nullptr), capacity(0), size(0) {}
@@ -16,7 +16,7 @@ TaskBook::~TaskBook() {
     std::cout << "\n\nTaskBook destructor called." << std::endl;
 }
 
-
+//==========================================Additional functions====================================================================================
 TaskBook &TaskBook::operator = (const TaskBook &other)                                          // Assignment operator to copy the contents of one TaskBook to another, ensuring proper memory management and deep copying of tasks
 {
     this -> size = other.size;
@@ -41,7 +41,7 @@ void TaskBook::Resize() {
     tasks = newTasks;
     capacity = newCapacity;
 }
-
+//==========================================Task main functions====================================================================================
 
     void TaskBook::AddTask(const std::string& name_, const std::string& description_, int priority_) {                                 // Add a new task to the task book + Ready
         std::cout <<"\n" <<"===============================\n" << std::endl;
